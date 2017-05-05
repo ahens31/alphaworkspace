@@ -1,18 +1,28 @@
 def max_profits (prices)
-profits = []
+  profits = 0
+  buy_prices = []
+  sell_prices = []
+  length = prices.length
 
-  for i in 0..(prices.length)
-  if prices [i] - prices [i+1] > 0
-    buy =prices [i] - prices [i+1]
+  #find all buying prices
+  for i in 0..(length-2)
+    if (prices[i] < prices[i-1] && prices[i] <= prices[i+1])
+      buy_prices.push(prices[i])
+    end
   end
-  if prices [i+1] - prices [i] > 0
-    sell = prices [i+1] - prices [i]
+   #find all selling prices
+  for i in 1..(length-1)
+    if i == length-1
+      if prices [i] > prices [i-1]
+        sell_prices.push (prices[i])
+      end
+    elsif (prices[i] > prices [i-1] && prices [i] >= prices [i+1])
+      sell_prices.push(prices[i])
+    end
   end
-
-  profits.push (sell - buy)
-  end
-
-print profits
+  
+puts buy_prices
+puts sell_prices
 end
 
-max_profits([3,1,2,5,4,7,2,10])
+max_profits [3,1,4,2,6,1,4]
