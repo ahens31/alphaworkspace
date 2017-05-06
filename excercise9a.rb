@@ -6,7 +6,9 @@ def max_profits (prices)
 
   #find all buying prices
   for i in 0..(length-2)
-    if (prices[i] < prices[i-1] && prices[i] <= prices[i+1])
+    if (prices[i]) < prices [i+1]
+      buy_prices.push(prices[i])
+    elsif (prices[i] < prices[i-1] && prices[i] <= prices[i+1]) #Qn: why does else condition not work? I tried else, did not work, elsif works!
       buy_prices.push(prices[i])
     end
   end
@@ -20,9 +22,16 @@ def max_profits (prices)
       sell_prices.push(prices[i])
     end
   end
-  
-puts buy_prices
-puts sell_prices
+
+buy_prices_total = buy_prices.sum
+sell_prices_total = sell_prices.sum
+profits = sell_prices_total - buy_prices_total
+
+#puts buy_prices
+#puts sell_prices
+#puts buy_prices_total
+#puts sell_prices_total
+puts profits
 end
 
-max_profits [3,1,4,2,6,1,4]
+max_profits [3,1,4,2,6,1,4,0,3,]
